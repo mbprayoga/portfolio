@@ -1,11 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { SiLinkedin, SiGithub } from "react-icons/si";
 import { useContactAnimation } from "@/hooks/useContactAnimation";
+import { useFadeIn } from "@/hooks/useFadeIn";
 
 export const Contact = () => {
   const [time, setTime] = useState("");
   const contactRef = useRef<HTMLElement | null>(null);
   useContactAnimation(contactRef);
+  useFadeIn(contactRef, { target: ".fade-in" });
 
   useEffect(() => {
     const updateTime = () => {
