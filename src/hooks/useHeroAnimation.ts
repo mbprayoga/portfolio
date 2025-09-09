@@ -8,22 +8,6 @@ export const useHeroAnimation = (
     () => {
       if (!containerRef.current) return;
 
-      gsap.fromTo(
-        ".fade-in",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          stagger: 0.3,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-          },
-        }
-      );
-
       gsap.to(containerRef.current, {
         opacity: 0,
         scrollTrigger: {

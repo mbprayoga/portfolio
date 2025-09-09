@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useFadeIn } from "@/hooks/useFadeIn";
+import { useReveal } from "@/hooks/useReveal";
 
 import yolo from "@/assets/yolo.png";
 import hailo from "@/assets/hailo.png";
@@ -114,7 +114,7 @@ type CategoryKey = keyof typeof categories;
 export const Skills = () => {
   const skillsRef = useRef<HTMLDivElement>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  useFadeIn(skillsRef);
+  useReveal(skillsRef);
 
   return (
     <section
@@ -123,7 +123,7 @@ export const Skills = () => {
       className="relative max-w-screen bg-bg flex"
     >
       <div className="container py-12 flex flex-col">
-        <h2 className="relative text-5xl md:text-6xl mb-12 text-fg font-medium fade-content inline-block text-left">
+        <h2 className="relative text-5xl md:text-6xl mb-12 text-fg font-medium reveal-content inline-block text-left">
           Skills & Tech Stack
           <span className="absolute left-0 -bottom-2 w-full h-[1px] bg-fg-muted rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.3)]"></span>
         </h2>

@@ -1,15 +1,20 @@
 import { useRef } from "react";
 import { useHeroAnimation } from "@/hooks/useHeroAnimation";
+import { useFadeIn } from "@/hooks/useFadeIn";
 
 export const Hero = () => {
   const heroRef = useRef<HTMLElement | null>(null);
   useHeroAnimation(heroRef);
+  useFadeIn(heroRef, {
+    target: ".fade-in",
+    stagger: { each: 0.3, from: "center" },
+  });
 
   return (
     <section
       id="hero"
       ref={heroRef}
-      className="relative w-full h-[90vh] top-0 flex flex-col justify-center z-0"
+      className="relative w-full h-screen top-0 flex flex-col justify-center z-0"
     >
       <div className="container flex flex-col justify-center text-center items-center">
         <div className="relative h-10 px-6 inline-flex items-center rounded-full backdrop-blur-sm fade-in mb-2">

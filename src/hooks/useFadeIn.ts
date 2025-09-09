@@ -1,31 +1,44 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 
+interface FadeInOptions {
+  target?: string; // optional selector inside ref
+  y?: number; // vertical offset
+  duration?: number;
+  delay?: number;
+  ease?: string;
+  stagger?: number | gsap.StaggerVars;
+}
+
 export const useFadeIn = (
-  containerRef: React.RefObject<HTMLElement | null>
+  ref: React.RefObject<HTMLElement | null>,
+  options: FadeInOptions = {}
 ) => {
+  const {
+    target,
+    y = 20,
+    duration = 1,
+    delay = 0,
+    ease = "power3.out",
+    stagger,
+  } = options;
+
   useGSAP(() => {
-    if (!containerRef.current) return;
+    if (!ref.current) return;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".fade-content",
-        { clipPath: "inset(-20% 100% -20% -20%)" },
-        {
-          clipPath: "inset(-20% -20% -20% -20%)",
-          duration: 1.5,
-          ease: "power3.inOut",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
-    }, containerRef);
+    const elements = target
+      ? ref.current.querySelectorAll(target)
+      : [ref.current]; // default to the element itself
 
-    return () => ctx.revert();
-  }, []);
+    if (!elements.length) return;
+
+    gsap.from(elements, {
+      opacity: 0,
+      y,
+      duration,
+      delay,
+      ease,
+      ...(stagger !== undefined && { stagger }),
+    });
+  }, [ref, target, y, duration, delay, ease, stagger]);
 };

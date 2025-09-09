@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useFadeIn } from "@/hooks/useFadeIn";
+import { useReveal } from "@/hooks/useReveal";
 
 import { Contact } from "@/components/Contact";
 
@@ -39,7 +39,7 @@ export const Projects = () => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  useFadeIn(projectsRef);
+  useReveal(projectsRef);
 
   // Detect active project in center
   useEffect(() => {
@@ -102,14 +102,14 @@ export const Projects = () => {
         className="relative max-w-screen bg-bg flex z-10"
       >
         <div className="container flex flex-col ">
-          <div className="relative flex mb-5 fade-content">
+          <div className="relative flex mb-5 reveal-content">
             <h2 className="text-5xl md:text-6xl text-fg font-medium inline-block text-left">
               Notable Projects
             </h2>
             <span className="absolute left-0 -bottom-2 w-full h-[1px] bg-fg-muted rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.3)]"></span>
           </div>
 
-          <div className="grid fade-content">
+          <div className="grid reveal-content">
             {projects.map((project, index) => (
               <div
                 key={index}

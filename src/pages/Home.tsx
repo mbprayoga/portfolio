@@ -9,8 +9,8 @@ export const Home = () => {
   return (
     <>
       <Gradient />
-      <Hero />
       <Navbar />
+      <Hero />
       <About />
       <Skills />
       <Projects />
