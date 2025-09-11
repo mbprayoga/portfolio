@@ -11,8 +11,8 @@ export const useNavbarAnimation = (
     gsap.set(nav, { y: 0 });
 
     ScrollTrigger.create({
-      trigger: "#about",
-      start: "bottom bottom",
+      trigger: "#hero",
+      start: "bottom top",
       end: "bottom top",
 
       onEnter: () => {

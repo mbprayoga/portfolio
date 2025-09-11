@@ -10,31 +10,32 @@ export const About = () => {
     <section
       id="about"
       ref={aboutRef}
-      className="relative max-w-screen bg-bg flex"
+      className="relative max-w-screen bg-bg flex min-h-[90vh]"
     >
-      <div className="container flex flex-col md:flex-row items-center md:items-stretch gap-12 ">
-        <div className="flex-shrink-0 flex justify-center md:justify-start">
+      <div className="container flex flex-col md:flex-row items-center md:items-stretch gap-8 sm:gap-12 self-center">
+        <div className="flex-shrink-0 self-center flex justify-center ">
           <img
             src={photo}
             alt="profile"
-            className="w-[250px] md:w-[300px] lg:w-[350px] rounded-2xl shadow-lg reveal-content"
+            className="w-40 sm:w-56 md:w-72 h-auto rounded-2xl shadow-lg reveal-content"
           />
         </div>
 
-        <div className="flex flex-col justify-between gap-6 flex-1 py-6">
-          <h2 className="relative text-5xl md:text-6xl text-fg font-medium reveal-content inline-block ">
-            About Me
-            <span className="absolute left-0 -bottom-2 w-full h-[1px] bg-fg-muted rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.3)]"></span>
-          </h2>
+        <div className="flex flex-col justify-between gap-6 ">
+          <div className="relative flex reveal-content mb-5 text-center justify-center border-b border-fg-muted">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
+              About Me
+            </h2>
+          </div>
 
-          <div className="flex flex-col gap-6">
-            <p className="text-lg md:text-xl text-justify text-fg-muted reveal-content">
+          <div className="flex flex-col gap-4 sm:gap-6">
+            <p className="text-base sm:text-lg md:text-xl text-justify text-fg-muted reveal-content">
               I build modern web applications and scalable cloud systems,
               focusing on performance, maintainability, and usability, with
               experience on machine learning to enhance functionality.
             </p>
 
-            <p className="text-lg md:text-xl text-justify text-fg-muted reveal-content">
+            <p className="text-base sm:text-lg md:text-xl text-justify text-fg-muted reveal-content">
               I continuously explore new tools to improve workflows, optimize
               solutions, and deliver reliable software that meets technical
               requirements and provides meaningful impact in real-world
@@ -42,12 +43,12 @@ export const About = () => {
             </p>
           </div>
 
-          <div className="flex flex-row gap-10 justify-center reveal-content">
-            <button className="px-6 py-3 rounded-xl bg-fg text-bg font-medium shadow-md hover:opacity-90 transition ">
+          <div className="flex flex-row gap-4 sm:gap-6 self-center md:justify-start reveal-content">
+            <button className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-fg text-bg font-medium shadow-md hover:opacity-90 transition">
               Get in touch
             </button>
 
-            <button className="px-6 py-3 rounded-xl bg-bg-light text-fg font-medium shadow-md hover:bg-bg-dark hover:text-fg transition">
+            <button className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-bg-light text-fg font-medium shadow-md hover:bg-bg-dark hover:text-fg transition">
               My Resume
             </button>
           </div>

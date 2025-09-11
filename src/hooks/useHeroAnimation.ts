@@ -17,11 +17,6 @@ export const useHeroAnimation = (
           pin: true,
           pinSpacing: false,
           scrub: true,
-          snap: {
-            snapTo: 1,
-            duration: 0.5,
-            ease: "power1.inOut",
-          },
         },
       });
     },

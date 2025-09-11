@@ -37,11 +37,10 @@ const projects = [
 export const Projects = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState<number | null>(null);
-
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+
   useReveal(projectsRef);
 
-  // Detect active project in center
   useEffect(() => {
     const handleScroll = () => {
       if (!projectsRef.current) return;
@@ -94,19 +93,20 @@ export const Projects = () => {
     return () => clearInterval(interval);
   }, [activeProject]);
 
+  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+
   return (
     <div>
       <section
         id="projects"
         ref={projectsRef}
-        className="relative max-w-screen bg-bg flex z-10"
+        className="relative max-w-screen min-h-[90vh] bg-bg flex z-10"
       >
-        <div className="container flex flex-col ">
-          <div className="relative flex mb-5 reveal-content">
-            <h2 className="text-5xl md:text-6xl text-fg font-medium inline-block text-left">
+        <div className="container flex flex-col">
+          <div className="relative flex reveal-content mb-5 text-left border-b border-fg-muted">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
               Notable Projects
             </h2>
-            <span className="absolute left-0 -bottom-2 w-full h-[1px] bg-fg-muted rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.3)]"></span>
           </div>
 
           <div className="grid reveal-content">
@@ -114,67 +114,106 @@ export const Projects = () => {
               <div
                 key={index}
                 data-project-index={index}
-                className={`grid grid-cols-1 md:grid-cols-[50%_1fr] py-10 border-b border-fg-muted transition-colors duration-300 ${
+                className={`relative group grid grid-cols-1 md:grid-cols-[50%_1fr] py-6 sm:py-10 border-b border-fg-muted overflow-hidden transition-colors duration-300 sm:bg-transparent sm:text-fg ${
                   activeProject === index
-                    ? "bg-highlight-dark text-fg-highlight"
-                    : "bg-transparent text-fg"
+                    ? "md:bg-highlight-dark md:text-fg-highlight"
+                    : "md:bg-transparent md:text-fg"
                 }`}
               >
-                <div className="flex flex-col justify-center gap-3 ml-2">
-                  <h3 className="text-2xl font-semibold text-left">
+                <span
+                  className="absolute bottom-0 left-[-75%] w-1/2 h-[2px] bg-gradient-to-r from-fg-highlight to-fg-highlight via-highlight
+                          opacity-0 group-hover:opacity-100  group-hover:translate-x-[200%] transition-all duration-700 ease-outmd:hidden"
+                ></span>
+
+                <div
+                  className="flex flex-col justify-center gap-2 sm:gap-3 ml-1 sm:ml-2 cursor-pointer md:cursor-default"
+                  onClick={() =>
+                    setOpenAccordion(openAccordion === index ? null : index)
+                  }
+                >
+                  <h3 className="text-base sm:text-xl md:text-2xl font-semibold text-left">
                     {project.title}
                   </h3>
                 </div>
 
                 <div
-                  className={`flex flex-wrap gap-2 items-center justify-end ${
-                    activeProject === index ? "opacity-0" : "opacity-100"
+                  className={`flex flex-wrap gap-1 sm:gap-2 items-center justify-start md:justify-end mt-3 sm:mt-0 sm:opacity-100 ${
+                    activeProject === index ? " md:opacity-0" : "md:opacity-100"
                   }`}
                 >
                   {project.skills.map((skill, i) => (
                     <span
                       key={i}
-                      className="bg-bg text-fg text-sm px-3 py-1 rounded-full shadow-sm"
+                      className="bg-bg text-fg text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full shadow-sm"
                     >
                       {skill}
                     </span>
                   ))}
+                </div>
+
+                <div
+                  className={`overflow-hidden transition-all duration-500 ease-in-out col-span-1 text-fg-muted rounded-lg my-4 md:hidden ${
+                    openAccordion === index
+                      ? "max-h-[1000px] opacity-100 mt-4"
+                      : "max-h-0 opacity-0 mt-0"
+                  }`}
+                >
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-2 shadow-lg">
+                    {project.images.map((img, idx) => (
+                      <img
+                        key={idx}
+                        src={img}
+                        alt={project.title}
+                        className={`absolute inset-0 w-full object-cover transition-opacity duration-700 ${
+                          idx === activeImageIndex ? "opacity-100" : "opacity-0"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <p className="text-sm text-justify">{project.description}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {activeProject !== null && (
-            <div className="fixed top-1/2 -translate-y-1/2 self-end w-[30vw] p-6 bg-highlight-dark text-bg shadow-xl rounded-lg transition-opacity duration-500">
+            <div className="hidden md:flex flex-col fixed top-1/2 -translate-y-1/2 self-end w-[35vw] aspect-[6/5] p-6 bg-highlight-dark text-bg shadow-xl rounded-lg transition-opacity duration-500 group">
               <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow mb-4">
                 {projects[activeProject].images.map((img, idx) => (
                   <img
                     key={idx}
                     src={img}
                     alt={projects[activeProject].title}
-                    className={`absolute inset-0 w-full object-fit transition-opacity duration-700  ${
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
                       idx === activeImageIndex ? "opacity-100" : "opacity-0"
                     }`}
                   />
                 ))}
+
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/40">
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {projects[activeProject].skills.map((skill, i) => (
+                      <span
+                        key={i}
+                        className="bg-highlight text-sm px-3 py-1 rounded-full shadow-sm"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              <div className="flex flex-wrap gap-2 items-center justify-center mb-4">
-                {projects[activeProject].skills.map((skill, i) => (
-                  <span
-                    key={i}
-                    className="bg-highlight text-sm px-3 py-1 rounded-full shadow-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
+              <div className="flex-1 overflow-y-auto pr-2 scrollbar-custom">
+                <p className="text-md leading-relaxed">
+                  {projects[activeProject].description}
+                </p>
               </div>
-
-              <p>{projects[activeProject].description}</p>
             </div>
           )}
-          <div className="text-center mt-10">
-            <button className="px-6 py-3 bg-black text-white rounded-xl shadow hover:bg-gray-800 transition">
+
+          <div className="text-center mt-8 sm:mt-10">
+            <button className="px-5 sm:px-6 py-2 sm:py-3 bg-black text-white rounded-xl shadow hover:bg-gray-800 transition">
               Other Projects
             </button>
           </div>

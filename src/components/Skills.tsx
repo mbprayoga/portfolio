@@ -114,56 +114,62 @@ type CategoryKey = keyof typeof categories;
 export const Skills = () => {
   const skillsRef = useRef<HTMLDivElement>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
   useReveal(skillsRef);
+
+  const handleClick = (category: string) => {
+    setActiveCategory((prev) => (prev === category ? null : category));
+  };
 
   return (
     <section
       id="skills"
       ref={skillsRef}
-      className="relative max-w-screen bg-bg flex"
+      className="relative max-w-screen min-h-[80vh] bg-bg flex"
     >
-      <div className="container py-12 flex flex-col">
-        <h2 className="relative text-5xl md:text-6xl mb-12 text-fg font-medium reveal-content inline-block text-left">
-          Skills & Tech Stack
-          <span className="absolute left-0 -bottom-2 w-full h-[1px] bg-fg-muted rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.3)]"></span>
-        </h2>
+      <div className="container flex flex-col">
+        <div className="relative flex reveal-content mb-5 text-left border-b border-fg-muted">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
+            Skills & Tech Stack
+          </h2>
+        </div>
 
-        <div className="relative flex gap-x-12">
-          <div className="w-[45%] flex flex-col h-64 gap-8 text-left transition">
+        <div className="relative flex flex-col-reverse md:flex-row md:gap-x-12 gap-y-12 min-h-64 items-start md:items-start">
+          <div className="w-full sm:w-[100%] md:w-[40%] flex flex-col text-left md:h-auto overflow-hidden">
             {(Object.keys(categories) as CategoryKey[]).map((category) => (
               <div
                 key={category}
-                className="relative flex flex-col cursor-pointer"
-                onMouseEnter={() => setActiveCategory(category)}
-                onMouseLeave={() => setActiveCategory(null)}
+                className={`group relative flex flex-col cursor-pointer border-b border-fg-muted duration-300 py-2${
+                  activeCategory === category
+                    ? "shadow-md shadow-highlight/30 bg-transparent"
+                    : ""
+                }`}
+                onClick={() => handleClick(category)}
               >
-                <h3
-                  className={`text-2xl font-semibold ml-2 ${
-                    activeCategory === category ? "text-primary" : "text-fg"
-                  }`}
-                >
-                  {category}
-                </h3>
-                <span className="absolute left-0 -bottom-2 w-full h-[1px] bg-fg-muted rounded-full"></span>
+                <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-gradient-to-r from-fg-highlight to-fg-highlight via-highlight transition-all duration-500 group-hover:w-full"></span>
 
-                <div
-                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                    activeCategory === category
-                      ? "max-h-40 opacity-100 mt-4"
-                      : "max-h-0 opacity-0 mt-0"
-                  }`}
-                >
-                  <p className="text-xl text-fg-muted ml-2">
-                    {categories[category].description}
-                  </p>
+                <div className="flex flex-col justify-center py-3">
+                  <h3 className="text-base sm:text-lg md:text-2xl font-semibold text-fg">
+                    {category}
+                  </h3>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                      activeCategory === category
+                        ? "max-h-32 sm:max-h-36 md:max-h-40 opacity-100 mt-2 sm:mt-3"
+                        : "max-h-0 opacity-0 mt-0"
+                    }`}
+                  >
+                    <p className="text-sm sm:text-base md:text-xl text-fg-muted">
+                      {categories[category].description}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="bg-fg-muted rounded-full w-[0.5px] shadow-[0_2px_6px_rgba(0,0,0,0.3)]"></div>
-
-          <div className="w-[55%] flex flex-wrap gap-6 justify-center">
+          <div className="w-full sm:w-[100%] md:w-[60%] flex flex-wrap gap-2 sm:gap-4 justify-center ">
             {skills.map((skill) => {
               const isActive =
                 activeCategory && skill.category === activeCategory;
@@ -171,13 +177,17 @@ export const Skills = () => {
               return (
                 <div
                   key={skill.name}
-                  className={`flex items-center justify-center h-12 w-12 rounded-3xl bg-bg-dark transition hover:grayscale-0 hover:scale-110 hover:shadow-md hover:shadow-highlight/40 ${
+                  className={`flex items-center justify-center h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 rounded-full bg-bg-dark transition hover:grayscale-0 hover:scale-110 hover:shadow-md hover:shadow-highlight/40 ${
                     isActive
                       ? "grayscale-0 scale-110 shadow-md shadow-highlight/40"
                       : "grayscale"
                   }`}
                 >
-                  <img src={skill.icon} alt={skill.name} className="w-8 h-8" />
+                  <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    className="w-6 h-6 sm:w-8 sm:h-8"
+                  />
                 </div>
               );
             })}

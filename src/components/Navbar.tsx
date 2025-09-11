@@ -28,7 +28,18 @@ export const Navbar = () => {
             <a href="#projects">Projects</a>
           </li>
           <li>
-            <a href="#contact">Contact</a>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({
+                  top: document.documentElement.scrollHeight,
+                  behavior: "smooth",
+                });
+              }}
+            >
+              Contact
+            </a>
           </li>
         </ul>
       </nav>

@@ -2,8 +2,8 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 
 interface FadeInOptions {
-  target?: string; // optional selector inside ref
-  y?: number; // vertical offset
+  target?: string;
+  y?: number;
   duration?: number;
   delay?: number;
   ease?: string;
@@ -28,8 +28,7 @@ export const useFadeIn = (
 
     const elements = target
       ? ref.current.querySelectorAll(target)
-      : [ref.current]; // default to the element itself
-
+      : [ref.current];
     if (!elements.length) return;
 
     gsap.from(elements, {

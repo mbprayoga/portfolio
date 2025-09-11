@@ -14,6 +14,7 @@ export const Home = () => {
       <About />
       <Skills />
       <Projects />
+      {/* Contact component is placed below projects in Projects.tsx*/}
     </>
   );
 };
