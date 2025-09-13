@@ -61,15 +61,12 @@
   --color-highlight: var(--highlight);
   --color-highlight-dark: var(--highlight-dark);
 
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-
   --font-primary: "Cooper Hewitt", sans-serif;
 }
 
 @layer base {
   :root {
-    --bg-dark: hsla(0, 0%, 76%, 0.5);
+    --bg-dark: hsla(0, 0%, 85%, 0.4);
     --bg: hsla(240, 11%, 96%, 1);
     --bg-light: hsla(0, 0%, 100%, 0.3);
 
@@ -79,24 +76,19 @@
 
     --highlight: hsla(0, 0%, 16%, 1);
     --highlight-dark: hsla(0, 0%, 6%, 1);
-
-    --primary: hsl(211, 100%, 50%, 1); /* System Blue (≈ “#007AFF”) */
-    --secondary: hsl(0, 70%, 50%, 1); /* Bold Product Red (rich red accent) */
   }
 
   .dark {
-    --bg-dark: hsla(0, 0%, 1%, 1);
-    --bg: hsla(0, 0%, 5%, 1);
-    --bg-light: hsla(0, 0%, 10%, 1);
+    --bg-dark: hsla(0, 0%, 35%, 0.5);
+    --bg: hsla(0, 0%, 8%, 1);
+    --bg-light: hsla(0, 0%, 16%, 0.4);
 
-    --fg: hsla(300, 0%, 95%, 1);
-    --fg-muted: hsla(300, 0%, 69%, 1);
+    --fg: hsla(0, 0%, 96%, 1);
+    --fg-muted: hsla(0, 0%, 65%, 1);
+    --fg-highlight: hsla(0, 0%, 12%, 1);
 
-    --highlight: hsla(330, 0%, 39%, 1);
-    --highlight-dark: hsla(0, 0%, 16%, 1);
-
-    --primary: hsla(0, 66%, 75%, 1);
-    --secondary: hsla(183, 52%, 57%, 1);
+    --highlight: hsla(0, 0%, 85%, 1);
+    --highlight-dark: hsla(0, 0%, 95%, 1);
   }
 
   html {

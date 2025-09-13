@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useReveal } from "@/hooks/useReveal";
 
 import { Contact } from "@/components/Contact";
+import { ExternalLink } from "lucide-react";
 
 import disko1 from "@/assets/disko1.png";
 import disko2 from "@/assets/disko2.png";
@@ -114,23 +115,21 @@ export const Projects = () => {
               <div
                 key={index}
                 data-project-index={index}
-                className={`relative group grid grid-cols-1 md:grid-cols-[50%_1fr] py-6 sm:py-10 border-b border-fg-muted overflow-hidden transition-colors duration-300 sm:bg-transparent sm:text-fg ${
+                className={`relative group grid grid-cols-1 md:grid-cols-[50%_1fr] py-6 sm:py-10 border-b border-fg-muted overflow-hidden transition-colors duration-300 sm:bg-transparent sm:text-fg cursor-pointer md:cursor-default ${
                   activeProject === index
                     ? "md:bg-highlight-dark md:text-fg-highlight"
                     : "md:bg-transparent md:text-fg"
                 }`}
+                onClick={() =>
+                  setOpenAccordion(openAccordion === index ? null : index)
+                }
               >
                 <span
-                  className="absolute bottom-0 left-[-75%] w-1/2 h-[2px] bg-gradient-to-r from-fg-highlight to-fg-highlight via-highlight
+                  className="md:hidden absolute bottom-0 left-[-75%] w-1/2 h-[2px] bg-gradient-to-r from-fg-highlight to-fg-highlight via-highlight
                           opacity-0 group-hover:opacity-100  group-hover:translate-x-[200%] transition-all duration-700 ease-outmd:hidden"
                 ></span>
 
-                <div
-                  className="flex flex-col justify-center gap-2 sm:gap-3 ml-1 sm:ml-2 cursor-pointer md:cursor-default"
-                  onClick={() =>
-                    setOpenAccordion(openAccordion === index ? null : index)
-                  }
-                >
+                <div className="flex flex-col justify-center gap-2 sm:gap-3 ml-1 sm:ml-2 ">
                   <h3 className="text-base sm:text-xl md:text-2xl font-semibold text-left">
                     {project.title}
                   </h3>
@@ -158,7 +157,7 @@ export const Projects = () => {
                       : "max-h-0 opacity-0 mt-0"
                   }`}
                 >
-                  <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-2 shadow-lg">
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-4 shadow-lg bg-bg-dark">
                     {project.images.map((img, idx) => (
                       <img
                         key={idx}
@@ -177,8 +176,8 @@ export const Projects = () => {
           </div>
 
           {activeProject !== null && (
-            <div className="hidden md:flex flex-col fixed top-1/2 -translate-y-1/2 self-end w-[35vw] aspect-[6/5] p-6 bg-highlight-dark text-bg shadow-xl rounded-lg transition-opacity duration-500 group">
-              <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow mb-4">
+            <div className="hidden md:flex flex-col fixed top-1/2 -translate-y-1/2 self-end w-[32vw] aspect-[6/5] p-6 bg-highlight-dark text-bg shadow-xl rounded-lg transition-opacity duration-500 group">
+              <div className="relative w-[95%] aspect-video rounded-lg overflow-hidden shadow mb-4 self-center bg-highlight">
                 {projects[activeProject].images.map((img, idx) => (
                   <img
                     key={idx}
@@ -212,10 +211,14 @@ export const Projects = () => {
             </div>
           )}
 
-          <div className="text-center mt-8 sm:mt-10">
-            <button className="px-5 sm:px-6 py-2 sm:py-3 bg-black text-white rounded-xl shadow hover:bg-gray-800 transition">
-              Other Projects
-            </button>
+          <div className="text-center self-center mt-8 sm:mt-10">
+            <a
+              href="https://github.com/mbprayoga"
+              className="flex gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-fg text-fg-highlight font-semibold hover:opacity-80 transition"
+            >
+              <span>Other Projects</span>
+              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+            </a>
           </div>
         </div>
       </section>

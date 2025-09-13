@@ -31,13 +31,17 @@ export const useFadeIn = (
       : [ref.current];
     if (!elements.length) return;
 
-    gsap.from(elements, {
-      opacity: 0,
-      y,
-      duration,
-      delay,
-      ease,
-      ...(stagger !== undefined && { stagger }),
-    });
+    gsap.fromTo(
+      elements,
+      { opacity: 0, y },
+      {
+        opacity: 1,
+        y: 0,
+        duration,
+        delay,
+        ease,
+        ...(stagger !== undefined && { stagger }),
+      }
+    );
   }, [ref, target, y, duration, delay, ease, stagger]);
 };

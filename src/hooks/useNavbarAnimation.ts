@@ -12,7 +12,7 @@ export const useNavbarAnimation = (
 
     ScrollTrigger.create({
       trigger: "#hero",
-      start: "bottom top",
+      start: "bottom 80%",
       end: "bottom top",
 
       onEnter: () => {

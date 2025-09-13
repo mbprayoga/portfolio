@@ -14,7 +14,7 @@ export const Hero = () => {
     <section
       id="hero"
       ref={heroRef}
-      className="relative max-w-screen h-screen top-0 flex  z-0"
+      className="relative max-w-screen  h-screen top-0 flex  z-0"
     >
       <div className="container mx-auto flex flex-col justify-center text-center items-center px-4 sm:px-6 gap-2">
         <div className="relative h-8 sm:h-9 md:h-10 px-3 sm:px-4 md:px-5 inline-flex items-center rounded-full backdrop-blur-sm fade-in mb-2 whitespace-nowrap">
@@ -27,7 +27,7 @@ export const Hero = () => {
         <div className="flex justify-center fade-in mb-2">
           <h1 className="inline-block text-[clamp(4rem,12vw,12rem)] leading-none tracking-[-0.07em] font-normal select-none whitespace-nowrap">
             <span className="text-fg">software </span>
-            <span className="relative inline-block bg-fg text-fg-highlight backdrop-blur-2xl opacity-90 pr-[0.08em]  rounded-2xl">
+            <span className="relative inline-block bg-fg text-fg-highlight backdrop-blur-2xl opacity-90 pr-[0.08em] rounded-xl sm:rounded-3xl ">
               <span className="absolute inset-0 bg-radial from-white to-black blur-sm opacity-60 text-transparent bg-clip-text mr-[0.08em]">
                 dev
               </span>

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useReveal } from "@/hooks/useReveal";
 import photo from "@/assets/photo.png";
+import { ExternalLink } from "lucide-react";
 
 export const About = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -44,13 +45,29 @@ export const About = () => {
           </div>
 
           <div className="flex flex-row gap-4 sm:gap-6 self-center md:justify-start reveal-content">
-            <button className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-fg text-bg font-medium shadow-md hover:opacity-90 transition">
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({
+                  top: document.documentElement.scrollHeight,
+                  behavior: "smooth",
+                });
+              }}
+              className="flex items-center justify-center gap-2 min-w-[160px] px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-fg text-fg-highlight font-semibold hover:opacity-80 transition"
+            >
               Get in touch
-            </button>
+            </a>
 
-            <button className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-bg-light text-fg font-medium shadow-md hover:bg-bg-dark hover:text-fg transition">
-              My Resume
-            </button>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 min-w-[160px] px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-bg-light text-fg font-semibold border border-fg hover:bg-fg hover:text-fg-highlight transition"
+            >
+              <span>My Resume</span>
+              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+            </a>
           </div>
         </div>
       </div>

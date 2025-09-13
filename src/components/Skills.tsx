@@ -134,8 +134,8 @@ export const Skills = () => {
           </h2>
         </div>
 
-        <div className="relative flex flex-col-reverse md:flex-row md:gap-x-12 gap-y-12 min-h-64 items-start md:items-start">
-          <div className="w-full sm:w-[100%] md:w-[40%] flex flex-col text-left md:h-auto overflow-hidden">
+        <div className="relative flex flex-col-reverse md:flex-row md:gap-x-12 gap-y-12  items-start md:items-start ">
+          <div className="w-full sm:w-[100%] md:w-[50%] flex flex-col text-left md:h-auto overflow-hidden reveal-content">
             {(Object.keys(categories) as CategoryKey[]).map((category) => (
               <div
                 key={category}
@@ -169,7 +169,7 @@ export const Skills = () => {
             ))}
           </div>
 
-          <div className="w-full sm:w-[100%] md:w-[60%] flex flex-wrap gap-2 sm:gap-4 justify-center ">
+          <div className="w-full sm:w-[100%] md:w-[50%] flex flex-wrap gap-2 sm:gap-4 justify-center px-4 self-start md:mt-[2vw] reveal-content">
             {skills.map((skill) => {
               const isActive =
                 activeCategory && skill.category === activeCategory;
