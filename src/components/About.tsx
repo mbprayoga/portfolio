@@ -60,7 +60,7 @@ export const About = () => {
             </a>
 
             <a
-              href="https://drive.google.com/file/d/1IAR7te8liVxS-YpWEjJjWHAbYfw9t-K9/view?usp=sharing"
+              href="https://drive.google.com/file/d/1icNT0mzrD8q_D7guhpJryk5L8lD26Joa/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 min-w-[160px] px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-bg-light text-fg font-semibold border border-fg hover:bg-fg hover:text-fg-highlight transition"
