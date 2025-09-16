@@ -237,5 +237,5 @@ export const Gradient = ({
     softness,
   ]);
 
-  return <div ref={canvasRef} className="fixed inset-0 z-0 max-w-screen" />;
+  return <div ref={canvasRef} className="fixed inset-0 z-0 w-screen" />;
 };

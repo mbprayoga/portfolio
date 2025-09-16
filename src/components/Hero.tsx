@@ -14,7 +14,7 @@ export const Hero = () => {
     <section
       id="hero"
       ref={heroRef}
-      className="relative max-w-screen  h-screen top-0 flex  z-0"
+      className="relative w-screen  h-screen top-0 flex  z-0"
     >
       <div className="container mx-auto flex flex-col justify-center text-center items-center px-4 sm:px-6 gap-2">
         <div className="relative h-8 sm:h-9 md:h-10 px-3 sm:px-4 md:px-5 inline-flex items-center rounded-full backdrop-blur-sm fade-in mb-2 whitespace-nowrap">
@@ -36,7 +36,7 @@ export const Hero = () => {
           </h1>
         </div>
 
-        <div className="max-w-3xl sm:max-w-4xl md:max-w-5xl px-4 sm:px-6 md:px-8 fade-in">
+        <div className="max-w-5xl px-4 sm:px-6 md:px-8 fade-in">
           <p className="text-[clamp(0.9rem,2.5vw,1.4rem)] text-fg leading-relaxed sm:leading-snug md:leading-normal">
             Building modern Web experiences, architecting scalable Cloud
             systems, and exploring intelligent solutions with Machine Learning.

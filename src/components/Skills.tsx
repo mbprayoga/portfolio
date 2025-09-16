@@ -125,9 +125,9 @@ export const Skills = () => {
     <section
       id="skills"
       ref={skillsRef}
-      className="relative max-w-screen min-h-[80vh] bg-bg flex"
+      className="relative w-screen min-h-[80vh] bg-bg flex"
     >
-      <div className="container flex flex-col">
+      <div className="container flex flex-col items-center md:items-stretch ">
         <div className="relative flex reveal-content mb-5 text-left border-b border-fg-muted">
           <h2 className="text-4xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
             Skills & Tech Stack

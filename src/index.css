@@ -107,9 +107,10 @@
 
 @layer utilities {
   .container {
-    max-width: 170vh;
+    max-width: 80vw;
     margin: 2.5rem auto;
     padding: 2rem;
+    box-sizing: border-box;
   }
 
   .scrollbar-custom::-webkit-scrollbar {

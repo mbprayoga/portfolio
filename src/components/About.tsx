@@ -11,7 +11,7 @@ export const About = () => {
     <section
       id="about"
       ref={aboutRef}
-      className="relative max-w-screen bg-bg flex min-h-[90vh]"
+      className="relative w-full bg-bg min-h-[90vh] flex"
     >
       <div className="container flex flex-col md:flex-row items-center md:items-stretch gap-8 sm:gap-12 self-center">
         <div className="flex-shrink-0 self-center flex justify-center ">
@@ -30,13 +30,13 @@ export const About = () => {
           </div>
 
           <div className="flex flex-col gap-4 sm:gap-6">
-            <p className="text-base sm:text-lg md:text-xl text-justify text-fg-muted reveal-content">
+            <p className="text-sm sm:text-base md:text-xl text-justify text-fg-muted reveal-content">
               I build modern web applications and scalable cloud systems,
               focusing on performance, maintainability, and usability, with
               experience on machine learning to enhance functionality.
             </p>
 
-            <p className="text-base sm:text-lg md:text-xl text-justify text-fg-muted reveal-content">
+            <p className="text-sm sm:text-base md:text-xl text-justify text-fg-muted reveal-content">
               I continuously explore new tools to improve workflows, optimize
               solutions, and deliver reliable software that meets technical
               requirements and provides meaningful impact in real-world
@@ -44,7 +44,7 @@ export const About = () => {
             </p>
           </div>
 
-          <div className="flex flex-row gap-4 sm:gap-6 self-center md:justify-start reveal-content">
+          <div className="flex flex-row gap-4 sm:gap-6 self-center md:justify-start reveal-content text-sm sm:text-base md:text-xl">
             <a
               href="#contact"
               onClick={(e) => {
@@ -54,7 +54,7 @@ export const About = () => {
                   behavior: "smooth",
                 });
               }}
-              className="flex items-center justify-center gap-2 min-w-[160px] px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-fg text-fg-highlight font-semibold hover:opacity-80 transition"
+              className="flex items-center justify-center gap-2 w-auto md:min-w-[160px] px-4 sm:px-5 py-2 sm:py-3 rounded-full bg-fg text-fg-highlight font-semibold hover:opacity-80 transition"
             >
               Get in touch
             </a>
@@ -63,10 +63,10 @@ export const About = () => {
               href="https://drive.google.com/file/d/1icNT0mzrD8q_D7guhpJryk5L8lD26Joa/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 min-w-[160px] px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-bg-light text-fg font-semibold border border-fg hover:bg-fg hover:text-fg-highlight transition"
+              className="flex items-center justify-center gap-2 w-auto md:min-w-[160px] px-4 sm:px-5 py-2 sm:py-3 rounded-full bg-bg-light text-fg font-semibold border border-fg hover:bg-fg hover:text-fg-highlight transition"
             >
               <span>My Resume</span>
-              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 hidden md:block" />
             </a>
           </div>
         </div>

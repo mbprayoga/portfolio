@@ -101,7 +101,7 @@ export const Projects = () => {
       <section
         id="projects"
         ref={projectsRef}
-        className="relative max-w-screen min-h-[90vh] bg-bg flex z-10"
+        className="relative w-screen min-h-[90vh] bg-bg flex z-10"
       >
         <div className="container flex flex-col">
           <div className="relative flex reveal-content mb-5 text-left border-b border-fg-muted">
@@ -214,7 +214,9 @@ export const Projects = () => {
           <div className="text-center self-center mt-8 sm:mt-10">
             <a
               href="https://github.com/mbprayoga"
-              className="flex gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-fg text-fg-highlight font-semibold hover:opacity-80 transition"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex gap-2 px-4 sm:px-5 py-2 sm:py-3 rounded-full bg-fg text-fg-highlight font-semibold hover:opacity-80 transition"
             >
               <span>Other Projects</span>
               <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
