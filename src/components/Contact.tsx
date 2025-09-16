@@ -47,11 +47,11 @@ export const Contact = () => {
 
         <div className="w-full md:w-[30%] flex flex-row md:flex-col gap-6 justify-center">
           <div className="w-[50%] md:w-full bg-bg-light rounded-2xl shadow-lg p-6 flex-1 flex flex-col gap-2 text-lg md:text-xl justify-center fade-in">
-            <p className="text-xs sm:text-sm md:text-md font-semibold">
+            <p className="text-xs sm:text-md md:text-lg font-semibold">
               Local Time
             </p>
             <p className="text-xl sm:text-4xl md:text-5xl">{time}</p>
-            <p className="text-xs sm:text-sm md:text-md text-fg/70">
+            <p className="text-xs sm:text-md md:text-lg text-fg/70">
               Semarang, Indonesia
             </p>
           </div>
