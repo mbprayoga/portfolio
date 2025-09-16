@@ -24,7 +24,7 @@ export const About = () => {
 
         <div className="flex flex-col justify-between gap-6 ">
           <div className="relative flex reveal-content mb-5 text-center justify-center border-b border-fg-muted">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
+            <h2 className="text-2xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
               About Me
             </h2>
           </div>

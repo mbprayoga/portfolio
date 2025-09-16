@@ -105,7 +105,7 @@ export const Projects = () => {
       >
         <div className="container flex flex-col">
           <div className="relative flex reveal-content mb-5 text-left border-b border-fg-muted">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
+            <h2 className="text-2xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
               Notable Projects
             </h2>
           </div>
