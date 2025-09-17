@@ -93,11 +93,17 @@
 
   html {
     @apply scroll-smooth overflow-x-hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-smooth: always;
   }
 
   body {
     @apply bg-bg text-fg font-primary transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-variant-ligatures: common-ligatures contextual;
   }
 
   section {

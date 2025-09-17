@@ -25,9 +25,9 @@ export const Hero = () => {
         </div>
 
         <div className="flex justify-center fade-in mb-2">
-          <h1 className="inline-block text-[clamp(4rem,12vw,12rem)] leading-none tracking-[-0.07em] font-normal select-none whitespace-nowrap">
-            <span className="text-fg">software </span>
-            <span className="relative inline-block bg-fg text-fg-highlight backdrop-blur-2xl opacity-90 pr-[0.08em] rounded-xl sm:rounded-3xl ">
+          <h1 className=" inline-block text-[clamp(4rem,12vw,12rem)] leading-none tracking-[-0.07em]  font-normal  whitespace-nowrap text-fg select-none">
+            <span className="">software </span>
+            <span className="relative inline-block bg-fg text-fg-highlight backdrop-blur-2xl opacity-90 pr-[0.08em] rounded-xl sm:rounded-2xl md:rounded-3xl pt-[0.2em] sm:pt-0">
               <span className="absolute inset-0 bg-radial from-white to-black blur-sm opacity-60 text-transparent bg-clip-text mr-[0.08em]">
                 dev
               </span>

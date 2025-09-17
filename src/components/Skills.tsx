@@ -114,11 +114,17 @@ type CategoryKey = keyof typeof categories;
 export const Skills = () => {
   const skillsRef = useRef<HTMLDivElement>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeSkill, setActiveSkill] = useState<string | null>(null);
 
   useReveal(skillsRef);
 
-  const handleClick = (category: string) => {
+  const handleClickCategory = (category: string) => {
     setActiveCategory((prev) => (prev === category ? null : category));
+    setActiveSkill(null);
+  };
+
+  const handleClickSkill = (skillName: string) => {
+    setActiveSkill((prev) => (prev === skillName ? null : skillName));
   };
 
   return (
@@ -134,7 +140,7 @@ export const Skills = () => {
           </h2>
         </div>
 
-        <div className="relative flex flex-col-reverse md:flex-row md:gap-x-12 gap-y-12  items-start md:items-start ">
+        <div className="relative flex flex-col-reverse md:flex-row md:gap-x-12 gap-y-12 items-start md:items-start">
           <div className="w-full sm:w-[100%] md:w-[50%] flex flex-col text-left md:h-auto overflow-hidden reveal-content">
             {(Object.keys(categories) as CategoryKey[]).map((category) => (
               <div
@@ -144,7 +150,7 @@ export const Skills = () => {
                     ? "shadow-md shadow-highlight/30 bg-transparent"
                     : ""
                 }`}
-                onClick={() => handleClick(category)}
+                onClick={() => handleClickCategory(category)}
               >
                 <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-gradient-to-r from-fg-highlight to-fg-highlight via-highlight transition-all duration-500 group-hover:w-full"></span>
 
@@ -171,24 +177,32 @@ export const Skills = () => {
 
           <div className="w-full sm:w-[100%] md:w-[50%] flex flex-wrap gap-2 sm:gap-4 justify-center px-4 self-start md:mt-[2vw] reveal-content">
             {skills.map((skill) => {
-              const isActive =
+              const isCategoryActive =
                 activeCategory && skill.category === activeCategory;
+              const isSkillActive = activeSkill === skill.name;
+              const isActive = isCategoryActive || isSkillActive;
 
               return (
-                <div
+                <button
                   key={skill.name}
-                  className={`flex items-center justify-center h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 rounded-full bg-bg-dark transition hover:grayscale-0 hover:scale-110 hover:shadow-md hover:shadow-highlight/40 ${
-                    isActive
-                      ? "grayscale-0 scale-110 shadow-md shadow-highlight/40"
-                      : "grayscale"
-                  }`}
+                  type="button"
+                  onClick={() => handleClickSkill(skill.name)}
+                  aria-pressed={isSkillActive}
+                  className={`flex items-center justify-center h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 rounded-full bg-bg-dark transition
+                    hover:grayscale-0 hover:scale-110 hover:shadow-md hover:shadow-highlight/40
+                    ${
+                      isActive
+                        ? "grayscale-0 scale-110 shadow-md shadow-highlight/40"
+                        : "grayscale"
+                    }
+                  `}
                 >
                   <img
                     src={skill.icon}
                     alt={skill.name}
                     className="w-6 h-6 sm:w-8 sm:h-8"
                   />
-                </div>
+                </button>
               );
             })}
           </div>

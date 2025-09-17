@@ -123,13 +123,13 @@ export const Gradient = ({
       prevMouseY = 0;
     let lastMoveTime = 0;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const updateMousePosition = (x: number, y: number) => {
       if (!canvasRef.current) return;
       const rect = canvasRef.current.getBoundingClientRect();
       prevMouseX = mouseX;
       prevMouseY = mouseY;
-      mouseX = e.clientX - rect.left;
-      mouseY = rect.height - (e.clientY - rect.top);
+      mouseX = x - rect.left;
+      mouseY = rect.height - (y - rect.top);
       lastMoveTime = performance.now();
       fluidMaterial.uniforms.iMouse.value.set(
         mouseX,
@@ -139,7 +139,27 @@ export const Gradient = ({
       );
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      updateMousePosition(e.clientX, e.clientY);
+    };
+
     const handleMouseLeave = () => {
+      fluidMaterial.uniforms.iMouse.value.set(0, 0, 0, 0);
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        updateMousePosition(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        updateMousePosition(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    const handleTouchEnd = () => {
       fluidMaterial.uniforms.iMouse.value.set(0, 0, 0, 0);
     };
 
@@ -158,6 +178,12 @@ export const Gradient = ({
 
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    document.addEventListener("touchmove", handleTouchMove, { passive: true });
+    document.addEventListener("touchend", handleTouchEnd, { passive: true });
+    document.addEventListener("touchcancel", handleTouchEnd, { passive: true });
     window.addEventListener("resize", handleResize);
 
     const animate = () => {
@@ -209,6 +235,10 @@ export const Gradient = ({
 
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleTouchEnd);
+      document.removeEventListener("touchcancel", handleTouchEnd);
       window.removeEventListener("resize", handleResize);
 
       if (renderer.domElement && canvasRef.current) {
