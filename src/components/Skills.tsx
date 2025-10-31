@@ -134,7 +134,7 @@ export const Skills = () => {
       className="relative w-screen min-h-[90vh] bg-bg flex z-10"
     >
       <div className="container flex flex-col">
-        <div className="relative flex reveal-content mb-5 text-left border-b border-fg-muted">
+        <div className="relative flex reveal-content mb-5 sm:pb-2 text-left border-b border-fg-muted">
           <h2 className="text-2xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
             Skills & Tech Stack
           </h2>

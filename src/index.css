@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
 @font-face {
   font-family: "Cooper Hewitt";
   src: url("/fonts/CooperHewitt-Thin.ttf") format("truetype");
@@ -47,8 +50,6 @@
   font-style: normal;
 }
 
-@import "tailwindcss";
-
 @theme {
   --color-bg-dark: var(--bg-dark);
   --color-bg: var(--bg);
@@ -61,6 +62,7 @@
   --color-highlight: var(--highlight);
   --color-highlight-dark: var(--highlight-dark);
 
+  --font-title: "Cooper Hewitt", sans-serif;
   --font-primary: "Cooper Hewitt", sans-serif;
 }
 
@@ -98,6 +100,12 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     font-smooth: always;
+  }
+
+  h1 {
+    @apply font-title transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-variant-ligatures: common-ligatures contextual;
   }
 
   body {
