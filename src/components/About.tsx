@@ -99,8 +99,8 @@ export const About = () => {
         </div>
 
         <div className="flex flex-col justify-between gap-2 w-full">
-          <div className="relative flex ent mb-5 text-center justify-center border-b border-fg-muted">
-            <h2 className="text-2xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
+          <div className="relative flex ent mb-5 text-left md:text-left justify-start md:justify-center border-b border-fg-muted">
+            <h2 className="text-2xl sm:text-5xl md:text-6xl text-fg font-medium  inline-block">
               About Me
             </h2>
           </div>
@@ -114,9 +114,7 @@ export const About = () => {
           <div className="flex flex-col items-center w-full">
             <Timeline position="alternate" sx={{ width: "100%", padding: 0 }}>
               {timelineData.map((item, i) => (
-                <TimelineItem
-                // key={i} position={item.position}
-                >
+                <TimelineItem>
                   <TimelineOppositeContent>
                     <p className="text-fg-muted text-xs sm:text-sm font-primary">
                       {item.date}

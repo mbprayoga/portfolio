@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Canvas, extend, useFrame } from "@react-three/fiber";
@@ -116,7 +115,6 @@ function Band({
   isMobile = false,
   cardGlb = cardDarkGLB,
 }: BandProps) {
-  // Using "any" for refs since the exact types depend on Rapier's internals
   const band = useRef<any>(null);
   const fixed = useRef<any>(null);
   const j1 = useRef<any>(null);

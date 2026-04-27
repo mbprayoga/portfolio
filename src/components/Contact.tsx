@@ -29,17 +29,17 @@ export const Contact = () => {
       ref={contactRef}
       className="sticky bottom-0 min-h-screen max-w-screen flex items-center justify-center px-6 z-0"
     >
-      <div className="container h-[70vh] flex flex-row justify-between items-stretch gap-8 py-6">
-        <div className="md:w-[75%] h-full bg-bg-light rounded-2xl shadow-lg p-8 flex flex-row fade-in overflow-hidden gap-4">
+      <div className="container h-[70vh] flex flex-col-reverse md:flex-row justify-between items-stretch gap-8 py-6">
+        <div className="md:w-[75%] h-full bg-bg-light rounded-2xl shadow-lg p-8 flex flex-row fade-in overflow-hidden gap-4 flex-[1] md:flex-auto">
           <div className="flex flex-col justify-between flex-1 text-[clamp(15px,3.2vw,2.5rem)] text-fg text-left leading-relaxed">
-            <p>Contact me at</p>
-            <div>
+            <p className="hidden md:block">Contact me at</p>
+            <div className="text-right">
               <p>
                 <a
                   href="https://www.linkedin.com/in/m-bintang-prayoga-utama/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline underline-offset-[11px] decoration-2 hover:text-fg-highlight transition-colors"
+                  className="underline md:underline-offset-[11px] decoration-2 hover:text-fg-highlight transition-colors"
                 >
                   LinkedIn
                 </a>
@@ -49,7 +49,7 @@ export const Contact = () => {
                   href="https://github.com/mbprayoga"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline underline-offset-[11px] decoration-2 hover:text-fg-highlight transition-colors"
+                  className="underline md:underline-offset-[11px] decoration-2 hover:text-fg-highlight transition-colors"
                 >
                   GitHub
                 </a>
@@ -57,7 +57,7 @@ export const Contact = () => {
               <p>
                 <a
                   href="mailto:mbprayoga000@gmail.com"
-                  className="underline underline-offset-[11px] decoration-2 hover:text-fg-highlight transition-colors"
+                  className="underline md:underline-offset-[11px] decoration-2 hover:text-fg-highlight transition-colors"
                 >
                   mbprayoga000@gmail.com
                 </a>
@@ -66,7 +66,7 @@ export const Contact = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-[30%] flex flex-row md:flex-col gap-6 justify-center">
+        <div className="w-full md:w-[30%] flex flex-row md:flex-col gap-6 justify-center flex-[4] md:flex-auto">
           <div className="bg-bg-light rounded-2xl shadow-lg p-6 flex-1 flex flex-col text-lg md:text-xl fade-in justify-around">
             <div className="absolute h-full w-full top-0 left-0 pointer-events-none">
               <Lanyard
