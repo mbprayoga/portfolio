@@ -52,7 +52,7 @@ export const Contact = () => {
             </p>
             <p className="text-xl sm:text-4xl md:text-5xl">{time}</p>
             <p className="text-xs sm:text-md md:text-lg text-fg/70">
-              Semarang, Indonesia
+              Jakarta, Indonesia
             </p>
           </div>
 

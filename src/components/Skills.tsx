@@ -1,109 +1,149 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useReveal } from "@/hooks/useReveal";
 
 import yolo from "@/assets/yolo.png";
 import hailo from "@/assets/hailo.png";
 
+const D = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
+const S = "https://cdn.simpleicons.org";
+
 const skills = [
   {
-    name: "Javascript",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+    name: "JavaScript",
+    category: " Languages",
+    icon: `${D}/javascript/javascript-original.svg`,
   },
   {
-    name: "Typescript",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-  },
-  {
-    name: "Node.js",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg",
-  },
-  {
-    name: "Express.js",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
-  },
-  {
-    name: "Next.js",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
-  },
-  {
-    name: "React.js",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-  },
-  {
-    name: "Vite.js",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
-  },
-  {
-    name: "PostgreSQL",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
-  },
-  {
-    name: "MySQL",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg",
-  },
-  {
-    name: "MongoDB",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
-  },
-  {
-    name: "Docker",
-    category: "Web Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
-  },
-  {
-    name: "AWS",
-    category: "Cloud Computing",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
-  },
-  {
-    name: "GCP",
-    category: "Cloud Computing",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg",
-  },
-  {
-    name: "Cloudflare",
-    category: "Cloud Computing",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cloudflare/cloudflare-original.svg",
+    name: "TypeScript",
+    category: " Languages",
+    icon: `${D}/typescript/typescript-original.svg`,
   },
   {
     name: "Python",
-    category: "Machine Learning",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+    category: " Languages",
+    icon: `${D}/python/python-original.svg`,
   },
   {
+    name: "Node.js",
+    category: " Web Dev",
+    icon: `${D}/nodejs/nodejs-original-wordmark.svg`,
+  },
+  {
+    name: "Express.js",
+    category: " Web Dev",
+    icon: `${D}/express/express-original.svg`,
+  },
+  {
+    name: "NestJS",
+    category: " Web Dev",
+    icon: `${D}/nestjs/nestjs-original.svg`,
+  },
+  {
+    name: "Next.js",
+    category: " Web Dev",
+    icon: `${D}/nextjs/nextjs-original.svg`,
+  },
+  {
+    name: "React.js",
+    category: " Web Dev",
+    icon: `${D}/react/react-original.svg`,
+  },
+  {
+    name: "Vite",
+    category: " Web Dev",
+    icon: `${D}/vitejs/vitejs-original.svg`,
+  },
+  {
+    name: "AWS",
+    category: "Cloud",
+    icon: `${D}/amazonwebservices/amazonwebservices-original-wordmark.svg`,
+  },
+  {
+    name: "GCP",
+    category: "Cloud",
+    icon: `${D}/googlecloud/googlecloud-original.svg`,
+  },
+  {
+    name: "Cloudflare",
+    category: "Cloud",
+    icon: `${D}/cloudflare/cloudflare-original.svg`,
+  },
+  {
+    name: "Vercel",
+    category: "Cloud",
+    icon: `${D}/vercel/vercel-original.svg`,
+  },
+  { name: "Render", category: "Cloud", icon: `${S}/render` },
+  { name: "Railway", category: "Cloud", icon: `${S}/railway/railway-original` },
+  {
+    name: "PostgreSQL",
+    category: "Databases",
+    icon: `${D}/postgresql/postgresql-original.svg`,
+  },
+  {
+    name: "MySQL",
+    category: "Databases",
+    icon: `${D}/mysql/mysql-original-wordmark.svg`,
+  },
+  {
+    name: "MongoDB",
+    category: "Databases",
+    icon: `${D}/mongodb/mongodb-original.svg`,
+  },
+  {
+    name: "Supabase",
+    category: "Databases",
+    icon: `${D}/supabase/supabase-original.svg`,
+  },
+  {
+    name: "Elastic",
+    category: "Search",
+    icon: `${S}/elastic`,
+  },
+  {
+    name: "Redis",
+    category: " Cache",
+    icon: `${D}/redis/redis-original.svg`,
+  },
+  { name: "Jest", category: " Testing", icon: `${D}/jest/jest-plain.svg` },
+  { name: "Supertest", category: " Testing", icon: `${S}/nodedotjs` },
+  { name: "k6", category: " Testing", icon: `${S}/k6` },
+  { name: "OWASP ZAP", category: " Testing", icon: `${S}/zap` },
+  {
     name: "TensorFlow",
-    category: "Machine Learning",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg",
+    category: "AI / ML",
+    icon: `${D}/tensorflow/tensorflow-original.svg`,
   },
   {
     name: "OpenCV",
-    category: "Machine Learning",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg",
+    category: "AI / ML",
+    icon: `${D}/opencv/opencv-original.svg`,
   },
-  { name: "YOLO", category: "Machine Learning", icon: yolo },
-  { name: "Hailo", category: "Machine Learning", icon: hailo },
+  { name: "YOLO", category: "AI / ML", icon: yolo },
+  { name: "Hailo", category: "AI / ML", icon: hailo },
+  { name: "Git", category: "Tools", icon: `${D}/git/git-original.svg` },
+  {
+    name: "Docker",
+    category: "Tools",
+    icon: `${D}/docker/docker-original.svg`,
+  },
+  {
+    name: "Postman",
+    category: "Tools",
+    icon: `${D}/postman/postman-original.svg`,
+  },
 ];
 
 const categories = {
   "Web Development": {
     description:
-      "Creating responsive websites and web applications with modern frameworks.",
+      "Creating responsive websites or server-side applications with modern frameworks.",
   },
   "Cloud Computing": {
     description:
-      "Building scalable and reliable systems using cloud platforms and services.",
+      "Building scalable and reliable system architectures using cloud platforms and services.",
   },
-  "Machine Learning": {
+  "AI / ML": {
     description:
       "Applying data-driven models to enhance applications with intelligent features.",
   },
@@ -113,19 +153,22 @@ type CategoryKey = keyof typeof categories;
 
 export const Skills = () => {
   const skillsRef = useRef<HTMLDivElement>(null);
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [activeSkill, setActiveSkill] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   useReveal(skillsRef);
 
-  const handleClickCategory = (category: string) => {
-    setActiveCategory((prev) => (prev === category ? null : category));
-    setActiveSkill(null);
-  };
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      setActiveIndex((i) => (i + 1) % skills.length);
+    }, 2200);
+    return () => clearInterval(id);
+  }, [paused]);
 
-  const handleClickSkill = (skillName: string) => {
-    setActiveSkill((prev) => (prev === skillName ? null : skillName));
-  };
+  const ITEM_H = 36;
+  const HALF = 6;
+  const translateY = (HALF - activeIndex) * ITEM_H;
 
   return (
     <section
@@ -134,77 +177,84 @@ export const Skills = () => {
       className="relative w-screen min-h-[90vh] bg-bg flex z-10"
     >
       <div className="container flex flex-col">
-        <div className="relative flex reveal-content mb-5 sm:pb-2 text-left border-b border-fg-muted">
+        <div className="relative flex ent mb-6 pb-2 text-left border-b border-fg-muted">
           <h2 className="text-2xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
             Skills & Tech Stack
           </h2>
         </div>
 
-        <div className="relative flex flex-col-reverse md:flex-row md:gap-x-12 gap-y-12 items-start md:items-start">
-          <div className="w-full sm:w-[100%] md:w-[50%] flex flex-col text-left md:h-auto overflow-hidden reveal-content">
-            {(Object.keys(categories) as CategoryKey[]).map((category) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 ent flex-1">
+          <div className="flex flex-col md:border-r border-fg-muted pr-6">
+            {(Object.keys(categories) as CategoryKey[]).map((cat) => (
               <div
-                key={category}
-                className={`group relative flex flex-col cursor-pointer border-b border-fg-muted duration-300 py-2${
-                  activeCategory === category
-                    ? "shadow-md shadow-highlight/30 bg-transparent"
-                    : ""
-                }`}
-                onClick={() => handleClickCategory(category)}
+                key={cat}
+                className="flex flex-col border-b border-fg-muted py-4"
               >
-                <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-gradient-to-r from-fg-highlight to-fg-highlight via-highlight transition-all duration-500 group-hover:w-full"></span>
-
-                <div className="flex flex-col justify-center py-3">
-                  <h3 className="text-base sm:text-lg md:text-2xl font-semibold text-fg">
-                    {category}
+                <div className="flex flex-col gap-1 py-2 text-left ml-1 sm:ml-2">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-medium text-fg">
+                    {cat}
                   </h3>
-
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      activeCategory === category
-                        ? "max-h-32 sm:max-h-36 md:max-h-40 opacity-100 mt-2 sm:mt-3"
-                        : "max-h-0 opacity-0 mt-0"
-                    }`}
-                  >
-                    <p className="text-sm sm:text-base md:text-xl text-fg-muted">
-                      {categories[category].description}
-                    </p>
-                  </div>
+                  <p className="text-sm sm:text-base md:text-xl text-fg-muted leading-snug">
+                    {categories[cat].description}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="w-full sm:w-[100%] md:w-[50%] flex flex-wrap gap-2 sm:gap-4 justify-center px-4 self-start md:mt-[2vw] reveal-content">
-            {skills.map((skill) => {
-              const isCategoryActive =
-                activeCategory && skill.category === activeCategory;
-              const isSkillActive = activeSkill === skill.name;
-              const isActive = isCategoryActive || isSkillActive;
+          <div className="pl-6 flex flex-row items-center gap-6">
+            <div
+              className="flex-1 overflow-hidden"
+              style={{ height: `${(HALF * 2 + 1) * ITEM_H}px` }}
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+            >
+              <div
+                className="flex flex-col transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateY(${translateY}px)` }}
+              >
+                {skills.map((skill, si) => (
+                  <button
+                    key={skill.name}
+                    type="button"
+                    onClick={() => {
+                      setActiveIndex(si);
+                      setPaused(true);
+                      setTimeout(() => setPaused(false), 3000);
+                    }}
+                    style={{ height: `${ITEM_H}px` }}
+                    className={`text-sm sm:text-base md:text-xl shrink-0 flex items-center text-left px-4 transition-colors duration-150 gap-3 ${
+                      si === activeIndex
+                        ? "text-fg font-semibold"
+                        : "text-fg-muted hover:text-fg"
+                    }`}
+                  >
+                    {skill.name}
+                    {si === activeIndex && (
+                      <>
+                        <span className="flex-1 h-px bg-fg-muted" />
+                        <span className="text-fg-muted text-xs sm:text-sm font-normal shrink-0">
+                          {skill.category}
+                        </span>
+                      </>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-              return (
-                <button
-                  key={skill.name}
-                  type="button"
-                  onClick={() => handleClickSkill(skill.name)}
-                  aria-pressed={isSkillActive}
-                  className={`flex items-center justify-center h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 rounded-full bg-bg-dark transition
-                    hover:grayscale-0 hover:scale-110 hover:shadow-md hover:shadow-highlight/40
-                    ${
-                      isActive
-                        ? "grayscale-0 scale-110 shadow-md shadow-highlight/40"
-                        : "grayscale"
-                    }
-                  `}
-                >
-                  <img
-                    src={skill.icon}
-                    alt={skill.name}
-                    className="w-6 h-6 sm:w-8 sm:h-8"
-                  />
-                </button>
-              );
-            })}
+            <div className="flex-1 flex items-center justify-center">
+              <div className="w-32 h-32 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full bg-highlight/20 border border-fg-highlight flex items-center justify-center">
+                <img
+                  src={skills[activeIndex].icon}
+                  alt={skills[activeIndex].name}
+                  className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

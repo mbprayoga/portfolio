@@ -4,31 +4,28 @@ import { useReveal } from "@/hooks/useReveal";
 import { Contact } from "@/components/Contact";
 import { ExternalLink } from "lucide-react";
 
-import disko1 from "@/assets/disko1.png";
-import disko2 from "@/assets/disko2.png";
-import moody1 from "@/assets/moody1.png";
-import moody2 from "@/assets/moody2.png";
-import spark1 from "@/assets/spark1.png";
-import spark2 from "@/assets/spark2.png";
+import proj1 from "@/assets/proj1.png";
+import proj2 from "@/assets/proj2.png";
+import proj3 from "@/assets/proj3.png";
 
 const projects = [
   {
     title: "Diskominfo Internship Management Platform",
-    images: [disko1, disko2],
+    image: proj1,
     description:
       "Developed backend for a web-based platform at Diskominfo Semarang, enabling management of internship records, attendance, and tasks, ensuring efficient monitoring and reporting for both interns and supervisors.",
     skills: ["Javascript", "Express.js", "MySQL"],
   },
   {
     title: "Moodify Mental Health Tracking and Assistance",
-    images: [moody1, moody2],
+    image: proj2,
     description:
       "Developed the backend and landing page for a mental health platform, integrating personalized mood tracking, self-help resources, and data-driven insights to support user well-being and engagement.",
     skills: ["Javascript", "Express.js", "React.js", "GCP"],
   },
   {
     title: "Intelligent Parking and Helmet Detection System",
-    images: [spark1, spark2],
+    image: proj3,
     description:
       "Developed a computer vision system for parking spot detection at Diponegoro University and contributed to research on Helmet Detection and Intelligent Parking Systems, including experimentation and paper preparation.",
     skills: ["Python", "YOLO", "OpenCV", "Hailo"],
@@ -38,7 +35,6 @@ const projects = [
 export const Projects = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState<number | null>(null);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useReveal(projectsRef);
 
@@ -47,7 +43,7 @@ export const Projects = () => {
       if (!projectsRef.current) return;
 
       const children = Array.from(
-        projectsRef.current.querySelectorAll("[data-project-index]")
+        projectsRef.current.querySelectorAll("[data-project-index]"),
       );
       const viewportCenter = window.innerHeight / 2;
 
@@ -63,7 +59,7 @@ export const Projects = () => {
           closestDistance = distance;
           closestIndex = parseInt(
             (child as HTMLElement).dataset.projectIndex || "-1",
-            10
+            10,
           );
         }
       });
@@ -80,20 +76,6 @@ export const Projects = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (activeProject === null) return;
-    setActiveImageIndex(0);
-
-    const interval = setInterval(() => {
-      setActiveImageIndex((prev) => {
-        const images = projects[activeProject].images;
-        return (prev + 1) % images.length;
-      });
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [activeProject]);
-
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
   return (
@@ -104,13 +86,13 @@ export const Projects = () => {
         className="relative w-screen min-h-[90vh] bg-bg flex z-10"
       >
         <div className="container flex flex-col">
-          <div className="relative flex reveal-content mb-5 sm:pb-2 text-left border-b border-fg-muted">
+          <div className="relative flex ent mb-5 sm:pb-2 text-left border-b border-fg-muted">
             <h2 className="text-2xl sm:text-5xl md:text-6xl text-fg font-medium inline-block">
               Notable Projects
             </h2>
           </div>
 
-          <div className="grid reveal-content">
+          <div className="grid ent">
             {projects.map((project, index) => (
               <div
                 key={index}
@@ -158,16 +140,11 @@ export const Projects = () => {
                   }`}
                 >
                   <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-4 shadow-lg bg-bg-dark">
-                    {project.images.map((img, idx) => (
-                      <img
-                        key={idx}
-                        src={img}
-                        alt={project.title}
-                        className={`absolute inset-0 w-full object-cover transition-opacity duration-700 ${
-                          idx === activeImageIndex ? "opacity-100" : "opacity-0"
-                        }`}
-                      />
-                    ))}
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <p className="text-sm text-justify">{project.description}</p>
                 </div>
@@ -178,16 +155,11 @@ export const Projects = () => {
           {activeProject !== null && (
             <div className="hidden md:flex flex-col fixed top-1/2 -translate-y-1/2 self-end w-[32vw] aspect-[6/5] p-6 bg-highlight-dark text-bg shadow-xl rounded-lg transition-opacity duration-500 group">
               <div className="relative w-[95%] aspect-video rounded-lg overflow-hidden shadow mb-4 self-center bg-highlight">
-                {projects[activeProject].images.map((img, idx) => (
-                  <img
-                    key={idx}
-                    src={img}
-                    alt={projects[activeProject].title}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                      idx === activeImageIndex ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                ))}
+                <img
+                  src={projects[activeProject].image}
+                  alt={projects[activeProject].title}
+                  className="w-full h-full object-cover"
+                />
 
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-black/40">
                   <div className="flex flex-wrap gap-2 justify-center">
